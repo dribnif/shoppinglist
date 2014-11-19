@@ -96,7 +96,9 @@ function upsert(slColl, lid, newElem, queryResultArr, res){
 
     slColl.update({'_id': lid}, { $set: {"list": shoppingList} }, function(err, numOfModifiedDocs){
         if (!err && numOfModifiedDocs>0) {
-            res.send(201, "Success" + msg + newElem.itemname);
+            utils.updateModifiedDateInDBCollection(slColl,lid, function(){
+                res.send(201, "Success" + msg + newElem.itemname);
+            });
         } else {
             res.send(400, "FAILED to " + msg);
         }
@@ -113,7 +115,9 @@ function removeListEntry(slColl, lid, elem, queryResultArr, res){
         shoppingList.splice(elemIdx,1);
         slColl.update({'_id': lid}, { $set: {"list": shoppingList} }, function(err, numOfModifiedDocs){
             if (!err && numOfModifiedDocs>0) {
-                res.send(201, "Successfully removed " + elem.itemname);
+                utils.updateModifiedDateInDBCollection(slColl,lid, function(){
+                    res.send(201, "Successfully removed " + elem.itemname);
+                });
             } else {
                 res.send(400, "FAILED to remove element: " + elem.itemname);
             }
