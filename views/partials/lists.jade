@@ -1,0 +1,8 @@
+p There are {{zelists.length}} lists
+div(ng-repeat='zelist in zelists')
+    h3
+        a(href='#/editList/{{zelist.listId}}') {{zelist.listname}}
+    span
+        a(href='#/deleteList/{{zelist.listId}}') delete {{zelist.listname}}
+    div created on {{zelist.created}}
+    div modified on {{zelist.modified}}

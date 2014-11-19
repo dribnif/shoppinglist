@@ -1,0 +1,5 @@
+p Are you sure you want to delete the list "{{list.listname}}" ?
+span(ng-show='srverror')
+    p(class='error') Ooops... failed to delete the list because {{srverror}}
+button(class='btn btn-primary' ng-show='!srverror' ng-click='deleteList()') Delete
+button(class='btn btn-primary' ng-click='goHome()') Cancel

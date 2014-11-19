@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    div(ng-controller='ListsController' class='view-animate-container')
+        p #{title} app. These are your shitty lists
+        span(class='home')
+            a(href='#/') Home
+        span(class='add-list')
+            a(href='#/createList') + Create a new fucking list
+        div(ng-view class='view-animate')
+    script(src='javascripts/lib/angular/angular.js')
+    script(src='javascripts/lib/angular/angular-route.js')
+    script(src='javascripts/lib/angular/angular-animate.js')
+    script(src='javascripts/angularApp.js')
+    script(src='javascripts/controllers.js')

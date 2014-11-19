@@ -1,0 +1,13 @@
+p Edit list
+form(ng-controller='EditListController')
+    input(type='text', ng-model='listHolder.listname')
+    span(ng-show='srverror')
+        p(class='error') Could not load list, because {{srverror}}
+    div(ng-repeat='lst in listHolder.list')
+        div(class='entry-wrapper')
+            span(ng-click='toggleStatus(lst)' class='entry-{{lst.itemstatus}}') {{lst.itemname}}
+            span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            a(href='' ng-click='delete(lst)' ) del
+    div Add new item
+        input(type='text', ng-model="newItem" )
+        button(class='btn btn-primary' ng-click='addItem()') Add

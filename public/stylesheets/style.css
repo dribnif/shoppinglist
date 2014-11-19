@@ -1,0 +1,35 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.error{
+  color: #e9322d;
+}
+
+
+.home, .add-list{
+  margin-top: 3px;
+  margin-right: 25px;
+  margin-left: 0px;
+  margin-bottom: 3px;
+}
+
+.entry-wrapper{
+  font-size: 18px;
+  margin: 9px 0 9px 0;
+}
+
+.entry-B{
+  text-decoration: line-through;
+  color:forestgreen;
+}
+
+.entry-N{
+  text-decoration: none;
+  color:#151515;
+}

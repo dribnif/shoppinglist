@@ -1,0 +1,6 @@
+p Create a new List
+form(ng-controller='CreateListController' ng-submit='createList()')
+    input(type='text', ng-model='list.listName')
+    span(ng-show='srverror')
+        p(class='error') Ooops... {{srverror}}
+    button(class='btn btn-primary') Create!
