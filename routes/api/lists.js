@@ -1,5 +1,5 @@
 var express = require('express');
-var utils = require('../../util/utils.js');
+var utils = require('shoppinglist-utils');
 var moment = require('moment');
 var router = express.Router();
 
@@ -79,7 +79,7 @@ router.get('/', function(req, res) {
 
 }).delete('/:listId', function(req, res){
     var slc = utils.getCollection(req);
-    var lid = req.params.listId
+    var lid = req.params.listId;
 
     console.log("ListId = ", lid);
 

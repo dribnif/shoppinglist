@@ -1,5 +1,5 @@
 var express = require('express');
-var utils = require('../../util/utils.js');
+var utils = require('shoppinglist-utils');
 var getRouter = express.Router();
 
 getRouter.get('/:listId', function(req, res) {
