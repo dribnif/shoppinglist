@@ -1,4 +1,5 @@
-angular.module('shoppingListApp', ['ngRoute', 'sl.controllers']).config(function($routeProvider){
+angular.module('shoppingListApp', ['ngRoute', 'sl.factory' ,'sl.controllers'])
+    .config(function($routeProvider){
     $routeProvider.when('/',
         {
             controller: 'ListsController' ,

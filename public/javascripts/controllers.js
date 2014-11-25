@@ -7,7 +7,7 @@ angular.module('sl.controllers',[])
             });
     }
 ).controller("EditListController",
-    function($scope, $http, $routeParams) {
+    function($scope, $http, $routeParams, WebSocketFactory) {
         var loadListContent = function(lId){
             $http.get('/api/shoppinglist/'+lId)
                 .success(function(data, status, headers, config) {
@@ -17,11 +17,19 @@ angular.module('sl.controllers',[])
                 });
         };
 
+
+        WebSocketFactory.registerCallbackForEvent('list-updated', function(data){
+            if (data.listId === $routeParams.listId){
+                loadListContent(data.listId);
+            }
+        });
+
         $scope.newItem = '';
         $scope.addItem = function(){
             if ($scope.newItem){
                 $http.post('/api/shoppinglist/' + $routeParams.listId, {'itemName':$scope.newItem, 'itemStatus':'N'})
                     .success(function(data){
+                        WebSocketFactory.updateList($routeParams.listId);
                         loadListContent($routeParams.listId);
                     }).error(function(data){
                         $scope.srverror="Failed to create the item because, " + data;
@@ -33,6 +41,7 @@ angular.module('sl.controllers',[])
             if ($routeParams.listId && list.itemname){
                 $http.delete('/api/shoppinglist/' + $routeParams.listId  + '/' + list.itemname)
                     .success(function(data){
+                        WebSocketFactory.updateList($routeParams.listId);
                         loadListContent($routeParams.listId);
                     }).error(function(data){
                         $scope.srverror="Failed to dee the item because, " + data;
@@ -48,6 +57,7 @@ angular.module('sl.controllers',[])
 
                 $http.post('/api/shoppinglist/' + $routeParams.listId,{'itemName':list.itemname, 'itemStatus': list.itemstatus})
                     .success(function(data){
+                        WebSocketFactory.updateList($routeParams.listId);
                         loadListContent($routeParams.listId);
                     }).error(function(data){
                         $scope.srverror="Failed to dee the item because, " + data;
