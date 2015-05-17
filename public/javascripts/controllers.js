@@ -30,7 +30,7 @@ angular.module('sl.controllers',[])
                 $http.post('/api/shoppinglist/' + $routeParams.listId, {'itemName':$scope.newItem, 'itemStatus':'N'})
                     .success(function(data){
                         WebSocketFactory.updateList($routeParams.listId);
-                        loadListContent($routeParams.listId);
+                        //loadListContent($routeParams.listId);
                     }).error(function(data){
                         $scope.srverror="Failed to create the item because, " + data;
                     });
